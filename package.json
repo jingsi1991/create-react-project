@@ -1,0 +1,20 @@
+{
+  "name": "create-react-project",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "cli.js",
+  "bin": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "193812957@qq.com",
+  "license": "ISC",
+  "devDependencies": {
+    "inquirer": "^9.2.15"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "ejs": "^3.1.9"
+  }
+}
