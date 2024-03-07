@@ -3,7 +3,7 @@
 import { program } from "commander";
 import chalk from "chalk";
 import { createRequire } from "module";
-import createAction from "../lib/create.js";
+import createAction from "../lib/createAction/index.js";
 import figlet from "figlet";
 const require = createRequire(import.meta.url);
 const pkgJson = require("../package.json");
