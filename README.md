@@ -22,4 +22,5 @@
 - commander：定义指令
 - chalk：命令行美化工具 
 - ora：命令行loading动效
+- cross-spawn：跨平台shell工具
 

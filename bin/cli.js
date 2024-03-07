@@ -5,23 +5,25 @@
 // 如果是Linux 或者 macOS 系统下还需要修改此文件的读写权限为 755
 // 具体就是通过 chmod 755 cli.js 实现修改
 console.log("creat-react-project working~");
-import ora from "ora";
+import spawn from "cross-spawn";
+import chalk from "chalk";
 
-const message = "Loading message~";
-// 初始化
-const spinner = ora(message);
-spinner.start();
+// 定义需要安装的依赖
+const dependencies = ['react', 'react-dom', 'axios']
 
-setTimeout(() => {
-  // 修改动画样式
-  spinner.color = "red";
-  spinner.text = "Loading message2";
+// 执行安装
+const child = spawn('npm',['install','-D'].concat(dependencies),{
+  stdio: 'inherit'
+})
 
-  setTimeout(() => {
-    spinner.stop(); // 停止
-    spinner.succeed("loading succeed"); // 成功
-    // spinner.fail(text?);  失败 ✖
-    // spinner.warn(text?);  提示 ⚠
-    // spinner.info(text?);  信息 ℹ
-  }, 2000);
-}, 2000);
+// 监听执行结果
+child.on('close',(code)=>{
+  if(code !== 0){
+    // 执行失败
+    console.log(chalk.red('Error occurred while installing dependencies'));
+    process.exit(1)
+  }else{
+    // 执行成功
+    console.log(chalk.cyan('Install finished'))
+  }
+})
