@@ -5,29 +5,23 @@
 // 如果是Linux 或者 macOS 系统下还需要修改此文件的读写权限为 755
 // 具体就是通过 chmod 755 cli.js 实现修改
 console.log("creat-react-project working~");
-import { program } from "commander";
-import chalk from "chalk";
+import ora from "ora";
 
-program
-  .version('0.1.0')
-  .command('create <name>')
-  .description('create a new project')
-  .action(name=>{
-    // 打印命令行输入的值
-    console.log('project name is ' + name)
-    
-    // 文本样式
-    console.log('project name is ' + chalk.bold(name))
+const message = "Loading message~";
+// 初始化
+const spinner = ora(message);
+spinner.start();
 
-    // 颜色
-    console.log('project name is ' + chalk.cyan(name))
-    console.log('project name is ' + chalk.green(name))
+setTimeout(() => {
+  // 修改动画样式
+  spinner.color = "red";
+  spinner.text = "Loading message2";
 
-    // 背景色
-    console.log('project name is ' + chalk.bgRed(name))
-
-    // 组合使用
-    console.log('project name is ' + chalk.rgb(4, 156, 219).underline(name))
-  })
-
-program.parse()
+  setTimeout(() => {
+    spinner.stop(); // 停止
+    spinner.succeed("loading succeed"); // 成功
+    // spinner.fail(text?);  失败 ✖
+    // spinner.warn(text?);  提示 ⚠
+    // spinner.info(text?);  信息 ℹ
+  }, 2000);
+}, 2000);
