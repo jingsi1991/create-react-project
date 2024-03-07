@@ -4,6 +4,7 @@ import { program } from "commander";
 import chalk from "chalk";
 import { createRequire } from "module";
 import createAction from "../lib/create.js";
+import figlet from "figlet";
 const require = createRequire(import.meta.url);
 const pkgJson = require("../package.json");
 
@@ -40,9 +41,23 @@ program
 
 program.version(`v${pkgJson.version}`).usage("<command> [option]");
 
-program.on('--help',()=>{
-  console.log(`\r\nRun ${chalk.cyan(`create-react-project <command> --help`)} for detailed usage of given command\r\n`)
-})
+program.on("--help", () => {
+  console.log(
+    "\r\n" +
+      figlet.textSync("create-react-project", {
+        font: "Standard",
+        horizontalLayout: "fitted",
+        verticalLayout: "fitted",
+        width: 160,
+        whitespaceBreak: true,
+      })
+  );
+  console.log(
+    `\r\nRun ${chalk.cyan(
+      `create-react-project <command> --help`
+    )} for detailed usage of given command\r\n`
+  );
+});
 
 // 解析用户执行命令时传入的参数
 program.parse(process.argv);
